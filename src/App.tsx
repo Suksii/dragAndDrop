@@ -3,28 +3,47 @@ import "./App.css";
 import TaskStatus from "./TaskStatus";
 import { TaskStatusType, TaskType } from "./types/types";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
+import { restrictToWindowEdges } from "@dnd-kit/modifiers";
 
 function App() {
   const taskStatus: TaskStatusType[] = [
-    { id: 1, title: "To Do" },
+    { id: 1, title: "Done" },
     { id: 2, title: "In Progress" },
-    { id: 3, title: "Done" },
+    { id: 3, title: "To Do" },
   ];
 
   const initialTasks: TaskType[] = [
-    { id: 1, title: "Title 1", description: "Description 1", status: "Done" },
+    {
+      id: 1,
+      title: "Implement Authentication",
+      description:
+        "Add user login, registration and authentification functionality.",
+      status: "Done",
+    },
     {
       id: 2,
-      title: "Title 2",
-      description: "Description 2",
+      title: "Design Database Schema",
+      description: "Create MongoDB schema for storing data.",
       status: "In Progress",
     },
-    { id: 3, title: "Title 3", description: "Description 3", status: "To Do" },
+    {
+      id: 3,
+      title: "Create and develop API endpoints",
+      description: "Implement REST API endpoints for fetching data.",
+      status: "In Progress",
+    },
     {
       id: 4,
-      title: "Title 4",
-      description: "Description 4",
-      status: "In Progress",
+      title: "Optimize Application Performance",
+      description: "Refactor code to improve performance.",
+      status: "To Do",
+    },
+    {
+      id: 5,
+      title: "Deploy Application",
+      description:
+        "Deploy the application to production environment and test functionality.",
+      status: "To Do",
     },
   ];
 
@@ -36,9 +55,6 @@ function App() {
 
     const taskId = active.id as number;
     const newStatus = over.id as TaskType["status"];
-
-    console.log("TaskId: ", taskId);
-    console.log("newStatus: ", newStatus);
 
     setTasks(() =>
       tasks.map((task) =>
@@ -58,7 +74,10 @@ function App() {
         Drag&Drop Tasks
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 h-fit">
-        <DndContext onDragEnd={handleDragEnd}>
+        <DndContext
+          onDragEnd={handleDragEnd}
+          modifiers={[restrictToWindowEdges]}
+        >
           {taskStatus.map((status) => {
             return <TaskStatus key={status.id} tasks={tasks} status={status} />;
           })}

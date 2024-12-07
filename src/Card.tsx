@@ -19,11 +19,12 @@ const Card = ({ task }: TaskProps) => {
       {...listeners}
       {...attributes}
       className={`min-w-44 w-full h-fit shadow-lg bg-gray-700 rounded-xl p-6 ${
-        isGrabbing ? "cursor-grab" : "cursor-grabbing"
+        isGrabbing ? "cursor-grabbing" : "cursor-grab"
       } `}
       style={style}
-      onMouseUp={() => setIsGrabbing(true)}
-      onMouseDown={() => setIsGrabbing(false)}
+      onMouseUp={() => setIsGrabbing(false)}
+      onMouseDown={() => setIsGrabbing(true)}
+      onPointerUp={() => setIsGrabbing(false)}
     >
       <h1 className="text-gray-50 text-2xl pb-4">{task.title}</h1>
       <p className="text-gray-50 text-lg">{task.description}</p>
