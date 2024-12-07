@@ -27,7 +27,7 @@ const Card = ({ task }: TaskProps) => {
       onPointerUp={() => setIsGrabbing(false)}
     >
       <h1 className="text-gray-50 text-2xl pb-4">{task.title}</h1>
-      <p className="text-gray-50 text-lg">{task.description}</p>
+      <p className="text-gray-400 text-lg">{task.description}</p>
     </div>
   );
 };
