@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Card from "./Card";
+import TaskStatus from "./TaskStatus";
 
 function App() {
   const taskStatus = [
@@ -30,9 +31,10 @@ function App() {
 
   return (
     <div className="bg-gray-900 h-[100vh] w-full p-8">
-      <div className="flex justify-between gap-6 items-center h-full">
-        {tasks.map((item) => {
-          return <Card title={item.title} description={item.description} />;
+      <h1 className="text-center text-gray-50 text-3xl font-semibold pb-10">Drag&Drop Tasks</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 h-fit">
+        {taskStatus.map((status) => {
+          return <TaskStatus key={status.id} tasks={tasks} status={status} />;
         })}
       </div>
     </div>
