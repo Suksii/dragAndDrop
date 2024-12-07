@@ -16,6 +16,5 @@ export type TaskStatusProps = {
 };
 
 export type TaskProps = {
-  title: string;
-  description: string;
+  task: TaskType;
 };
